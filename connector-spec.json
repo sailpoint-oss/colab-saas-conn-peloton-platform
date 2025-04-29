@@ -1,0 +1,150 @@
+{
+	"name": "colab-saas-conn-peloton-platform",
+	"commands": [
+		"std:account:create",
+		"std:account:enable",
+		"std:account:disable",
+		"std:account:list",
+		"std:account:read",
+		"std:account:update",
+		"std:entitlement:list",
+		"std:test-connection"
+	],
+	"sourceConfig": [{
+		"type": "menu",
+		"label": "Configuration",
+		"items": [{
+			"type": "section",
+			"sectionTitle": "Authentication",
+			"sectionHelpMessage": "Provide connection parameters to interact securely with the target application.",
+			"items": [{
+					"key": "subKey",
+					"label": "Subscription Key",
+					"type": "secret"
+				},
+				{
+					"key": "rootUrl",
+					"label": "Root Url",
+					"type": "text"
+				},
+				{
+					"key": "audienceUrl",
+					"label": "Audience Url",
+					"type": "text"
+				},
+				{
+					"key": "tokenUrl",
+					"label": "Token Url",
+					"type": "text"
+				},
+				{
+					"key": "org",
+					"label": "Organization",
+					"type": "text"
+				},
+				{
+					"key": "clientId",
+					"label": "Client Id",
+					"type": "text"
+				},
+				{
+					"key": "clientSecret",
+					"label": "Client Secret",
+					"type": "secret"
+				},
+				{
+					"key": "ignoreSSL",
+					"label": "Ignore SSL errors?",
+					"type": "checkbox",
+					"required": false
+				}
+			]
+		}]
+	}],
+	"accountSchema": {
+		"displayAttribute": "email",
+		"identityAttribute": "email",
+		"attributes": [{
+			"name": "email",
+			"type": "string",
+			"description": "Email of the account"
+		},
+		{
+			"name": "firstName",
+			"type": "string",
+			"description": "User given name"
+		},
+		{
+			"name": "lastName",
+			"type": "string",
+			"description": "User family name"
+		},
+		{
+			"name": "productRoles",
+			"type": "string",
+			"description": "Assigned product roles",
+			"entitlement": true,
+			"managed": true,
+			"multi": true
+		},
+		{
+			"name": "productGroups",
+			"type": "string",
+			"description": "Assigned product groups",
+			"entitlement": true,
+			"managed": true,
+			"multi": true
+		},
+		{
+			"name": "platformRights",
+			"type": "string",
+			"description": "Platform rights assigned to a user",
+			"entitlement": true,
+			"managed": true,
+			"multi": true
+		}]
+	},
+	"entitlementSchemas": [{
+			"type": "productRole",
+			"identityAttribute": "id",
+			"displayAttribute": "displayName",
+			"attributes": [{
+					"name": "id",
+					"type": "string",
+					"description": ""
+				},
+				{
+					"name": "displayName",
+					"type": "string",
+					"description": ""
+				}
+			]
+		},
+		{
+			"type": "productGroup",
+			"identityAttribute": "id",
+			"displayAttribute": "displayName",
+			"attributes": [{
+					"name": "id",
+					"type": "string",
+					"description": ""
+				},
+				{
+					"name": "displayName",
+					"type": "string",
+					"description": ""
+				}
+			]
+		},
+		{
+			"type": "platformRight",
+			"identityAttribute": "displayName",
+			"displayAttribute": "displayName",
+			"attributes": [{
+				"name": "displayName",
+				"type": "string",
+				"description": ""
+			}]
+		}
+	]
+}
